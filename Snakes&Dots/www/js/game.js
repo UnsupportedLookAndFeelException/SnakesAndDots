@@ -1,6 +1,6 @@
-document.oncontextmenu = document.body.oncontextmenu = function() {return false;}
 
     var canvas = document.getElementById("canvas");
+    canvas.oncontextmenu = function() {return false;}
   
     function getWindowWidth() {
       return Math.max(
