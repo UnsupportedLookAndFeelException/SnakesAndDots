@@ -16,5 +16,7 @@
   <author href="https://build.phonegap.com" email="calebhwin@gmail.com">
       Caleb Winston
   </author>
+   
+  <preference name="orientation" value="landscape" />
 
 </widget>
