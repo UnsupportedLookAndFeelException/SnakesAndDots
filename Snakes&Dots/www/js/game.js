@@ -1,4 +1,4 @@
-preventDefault();
+document.addEventListener('contextmenu', event => event.preventDefault());
     var canvas = document.getElementById("canvas");
   
     function getWindowWidth() {
