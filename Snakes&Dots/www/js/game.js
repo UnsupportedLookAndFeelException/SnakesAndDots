@@ -1,6 +1,10 @@
-
-    var canvas = document.getElementById("canvas");
+var canvas = document.getElementById("canvas");
     canvas.oncontextmenu = function() {return false;}
+    
+    var isMousePressed = false;
+    function mousePressed() {
+      isMousePressed = true;
+    }
   
     function getWindowWidth() {
       return Math.max(
@@ -24,6 +28,7 @@
         var mouseIsPressed = false;
         processing.mousePressed = function () { mouseIsPressed = true; };
         processing.mouseReleased = function () { mouseIsPressed = false; };
+        mouseIsPressed=isMousePressed;
 
         var keyIsPressed = false;
         processing.keyPressed = function () { keyIsPressed = true; };
