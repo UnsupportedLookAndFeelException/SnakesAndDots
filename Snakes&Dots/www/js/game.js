@@ -1,4 +1,4 @@
-
+preventDefault();
     var canvas = document.getElementById("canvas");
   
     function getWindowWidth() {
