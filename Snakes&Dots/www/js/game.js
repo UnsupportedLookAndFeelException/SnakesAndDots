@@ -1,4 +1,5 @@
-var canvas = document.getElementById("canvas");
+
+    var canvas = document.getElementById("canvas");
     canvas.oncontextmenu = function() {return false;}
     
     var isMousePressed = false;
@@ -26,12 +27,19 @@ var canvas = document.getElementById("canvas");
         processing.background(0xFFF);
 
         var mouseIsPressed = false;
+        processing.mousePressed = function () { mouseIsPressed = true; };
+        processing.mouseReleased = function () { mouseIsPressed = false; };
         mouseIsPressed=isMousePressed;
 
         var keyIsPressed = false;
         processing.keyPressed = function () { keyIsPressed = true; };
         processing.keyReleased = function () { keyIsPressed = false; };
 
+        function getImage(s) {
+            var url = "https://www.kasandbox.org/programming-images/" + s + ".png";
+            processing.externals.sketch.imageCache.add(url);
+            return processing.loadImage(url);
+        }
 
         // use degrees rather than radians in rotate function
         var rotateFn = processing.rotate;
@@ -52,9 +60,6 @@ var canvas = document.getElementById("canvas");
         };
 
         with (processing) {
-            
-            var mouseIsPressed = false;
-            mouseIsPressed=isMousePressed;
                         /**
              * BLUR:      11,
                 GRAY:      12,
@@ -69,6 +74,7 @@ var canvas = document.getElementById("canvas");
                 TODO Help page
             **/
             // 64 sec. ,96 sec.
+            disableContextMenu();
             frameRate(60);
             var page = 0;
             textAlign(CENTER,CENTER);
