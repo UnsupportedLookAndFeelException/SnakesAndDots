@@ -133,9 +133,6 @@ var processing = new Processing(canvas, function(processing) {
     };
 
     with(processing) {
-        if(isMousePressed||mouseIsPressed) {
-            println("Please. :/");
-        }
         /**
              * BLUR:      11,
                 GRAY:      12,
@@ -1082,6 +1079,10 @@ var processing = new Processing(canvas, function(processing) {
             }
         };
         draw = function() {
+            
+        if(isMousePressed||mouseIsPressed) {
+            println("Please. :/");
+        }
             cursor(ARROW);
             //println(5);
             fR++;
