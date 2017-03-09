@@ -833,7 +833,7 @@ var processing = new Processing(canvas, function(processing) {
                 if (fixture.up === "Booster" || fixture.down === "Booster") {
                     speed = 5 * scaleFactor;
                 }
-                if (mouseIsPressed || keys[UP]) {
+                if (isMousePressed||mouseIsPressed || keys[UP]) {
                     pA += (speed - pA) / 10;
                 } else {
                     pA += (-speed - pA) / 10;
@@ -1079,10 +1079,6 @@ var processing = new Processing(canvas, function(processing) {
             }
         };
         draw = function() {
-            
-        if(isMousePressed||mouseIsPressed) {
-            println("Please. :/");
-        }
             cursor(ARROW);
             //println(5);
             fR++;
