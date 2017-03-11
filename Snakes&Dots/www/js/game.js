@@ -486,6 +486,22 @@ var processing = new Processing(canvas, function(processing) {
             fill(35, 55, 70, helpFade);
             rect(0, 0, width, height);
         };
+        var randomDot = function() {
+          var scaleFac=scaleFactor;
+          var xy = random(35 * scaleFac, height - 35 * scaleFac);
+          if(round(random(1, 2)) === 1) {
+            xy2 = random(35 * scaleFac / 2, xy - 35 * scaleFac);
+          } else {
+            xy2 = random(xy + 35 * scaleFac, height - 35 * scaleFac / 2);
+          }
+          var xtype = round(random(1, 4));
+          if(xtype===1) {
+            xtype2=2;
+          } else {
+            xtype2=1;
+          }
+          return {y:xy,y2:xy2,type:xtype,type2:xtype2};
+        };
         var game = function() {
             var scaleFac = scaleFactor;
             background(255, 225, 100);
@@ -846,36 +862,34 @@ var processing = new Processing(canvas, function(processing) {
                     spike.down = false;
                 }
                 if (seconds > 1 || secondTime) {
-                    var y = random(35 * scaleFac, height - 35 * scaleFac);
-                    var y2 = round(random(1, 2)) === 1 ? random(35 * scaleFac / 2, y - 35 * scaleFac) : random(y + 35 * scaleFac, height - 35 * scaleFac / 2);
-                    var type = round(random(1, 4));
-                    var type2 = type === 1 ? 2 : 1;
+                    var randDot = randomDot();
+                    var y = randDot.y,
+                        y2 = randDot.y2,
+                        type = randDot.type,
+                        type2 = randDot.type2;
                     if (seconds > 5 && !powerUpSpawned) {
+                        var P_LEN = POWERUPS.length;
                         if (type === 2) {
                             if (random(0, 100) < POWERUP_SPAWN_CHANCE) {
-                                type = 4 + round(random(1, POWERUPS.length - 1));
+                                type = 4 + round(random(1, P_LEN - 1));
                             }
                         } else if (type2 === 2) {
                             if (random(0, 100) < POWERUP_SPAWN_CHANCE) {
-                                //println(y2<height/2?!spawn.up:!spawn.down+"!");
-                                type2 = 4 + round(random(1, POWERUPS.length - 1));
-                                //type2=7;
+                                type2 = 4 + round(random(1, P_LEN - 1));
                             }
                         }
                     }
                     obstacles.push({
-                        x: width + 120 * scaleFac + random(-0, 0),
+                        x: width + 120 * scaleFac,
                         y: y,
                         t: type,
-                        yAccl: -7 * scaleFac,
-                        j: false
+                        yAccl: -7 * scaleFac
                     });
                     obstacles.push({
-                        x: width + 210 * scaleFac + random(-0, 0),
+                        x: width + 210 * scaleFac,
                         y: y2,
                         t: type2,
-                        yAccl: -7 * scaleFac,
-                        j: false
+                        yAccl: -7 * scaleFac
                     });
                 }
                 seconds++;
