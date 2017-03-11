@@ -108,7 +108,7 @@ var processing = new Processing(canvas, function(processing) {
             **/
         // 64 sec. ,96 sec.
         disableContextMenu();
-        frameRate(120);
+        frameRate(60);
         var page = 0;
         textAlign(CENTER, CENTER);
         textFont(createFont("Century Gothic Bold"));
