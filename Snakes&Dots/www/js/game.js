@@ -8,7 +8,7 @@ var mousePos = {
     x: 0,
     y: 0
 };
-canvas.addEventListener("mousedown", function(e) {
+/*canvas.addEventListener("mousedown", function(e) {
     isMousePressed = true;
 }, false);
 canvas.addEventListener("mouseup", function(e) {
@@ -23,13 +23,19 @@ function getMousePos(canvasDom, mouseEvent) {
         x: mouseEvent.clientX - rect.left,
         y: mouseEvent.clientY - rect.top
     };
-}
+}*/
 canvas.addEventListener("touchstart", function(e) {
     isMousePressed = true;
 }, false);
 canvas.addEventListener("touchend", function(e) {
+		var touch = e.touches[0];
     isMousePressed = false;
     isMouseClicked = true;
+    //var rect = canvasDom.getBoundingClientRect();
+    mousePos={
+        x: touch.clientX,
+        y: touch.clientY
+    };
 }, false);
 
 
@@ -1030,6 +1036,8 @@ var processing = new Processing(canvas, function(processing) {
             }
         };
         draw = function() {
+          mouseX=mousePos.x;
+          mouseY=mousePos.y;
             mouse.clicked=isMouseClicked;
             cursor(ARROW);
             //println(5);
