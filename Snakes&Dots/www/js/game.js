@@ -33,24 +33,6 @@ canvas.addEventListener("touchend", function(e) {
 }, false);
 
 
-// Prevent scrolling when touching the canvas
-document.body.addEventListener("touchstart", function(e) {
-    if (e.target == canvas) {
-        e.preventDefault();
-    }
-}, false);
-document.body.addEventListener("touchend", function(e) {
-    if (e.target == canvas) {
-        e.preventDefault();
-    }
-}, false);
-document.body.addEventListener("touchmove", function(e) {
-    if (e.target == canvas) {
-        e.preventDefault();
-    }
-}, false);
-
-
 
 var processing = new Processing(canvas, function(processing) {
     //processing.size(800,400); // minX = 200   minY = 300 iphone=(1920/3, 1080/3)
@@ -654,25 +636,16 @@ var processing = new Processing(canvas, function(processing) {
                     popMatrix();
                 }
                 noStroke();
-                if (o.t === 1 && o.x < 150 * scaleFac) {
-                    fill(255, 225, 100, sin(fR * 20) * 100 + 50);
-                    ellipse(o.x, o.y, 35 * scaleFac, 35 * scaleFac);
-                    if (o.x < -35 * scaleFac / 2 && o.j === false) {
-                        if (o.y < height / 2 && fixture.up === "Safety Net") {
-                            o.j = true;
-                        } else if (o.y >= height / 2 && fixture.down === "Safety Net") {
-                            o.j = true;
-                        } else {
-                            gameOver = true;
-                        }
-                    }
-                }
                 if (!gameOver) {
                     o.x -= 3 * scaleFac;
                 }
                 var span1 = 35 * scaleFac,
                     span2 = 35 * scaleFac;
                 if (o.t === 1) {
+                    if (o.x < 150 * scaleFac) {
+                        fill(255, 225, 100, sin(fR * 20) * 100 + 50);
+                        ellipse(o.x, o.y, 35 * scaleFac, 35 * scaleFac);
+                    }
                     if (fixture.up === "Spike") {
                         span1 = 41 * scaleFac;
                     }
@@ -690,7 +663,7 @@ var processing = new Processing(canvas, function(processing) {
                         span2 = 55 * scaleFac;
                     }
                 }
-                if (dist(o.x, o.y, 150 * scaleFac, height / 2 + pY) <= span2 || dist(o.x, o.y, 150 * scaleFac, height / 2 - pY) <= span1) {
+                if (o.x<200*scaleFac&&dist(o.x, o.y, 150 * scaleFac, height / 2 + pY) <= span2 || dist(o.x, o.y, 150 * scaleFac, height / 2 - pY) <= span1) {
                     if (o.t > 4) {
                         o.j = true;
                         if (toastToF === 0) {
@@ -760,10 +733,19 @@ var processing = new Processing(canvas, function(processing) {
                     o.y += o.yAccl;
                     o.yAccl += 1 * scaleFac;
                 }
-                if (o.x < -50) {
+                if (o.x < -35/2) {
                     obstacles.splice(i, 1);
                     oLen--;
                     i--;
+                    if(o.t===1&&!o.j) {
+                      if (fixture.up === "Safety Net"&&o.y < height / 2) {
+                        o.j = true;
+                      } else if (fixture.down === "Safety Net"&&o.y >= height / 2) {
+                        o.j = true;
+                      } else {
+                        gameOver = true;
+                      }
+                    }
                 }
             }
             strokeCap(SQUARE);
