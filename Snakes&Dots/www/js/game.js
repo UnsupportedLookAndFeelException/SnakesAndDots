@@ -8,7 +8,7 @@ var mousePos = {
     x: 0,
     y: 0
 };
-/*canvas.addEventListener("mousedown", function(e) {
+canvas.addEventListener("mousedown", function(e) {
     isMousePressed = true;
 }, false);
 canvas.addEventListener("mouseup", function(e) {
@@ -23,13 +23,31 @@ function getMousePos(canvasDom, mouseEvent) {
         x: mouseEvent.clientX - rect.left,
         y: mouseEvent.clientY - rect.top
     };
-}*/
+}
 canvas.addEventListener("touchstart", function(e) {
     isMousePressed = true;
 }, false);
 canvas.addEventListener("touchend", function(e) {
     isMousePressed = false;
     isMouseClicked = true;
+}, false);
+
+
+// Prevent scrolling when touching the canvas
+document.body.addEventListener("touchstart", function(e) {
+    if (e.target == canvas) {
+        e.preventDefault();
+    }
+}, false);
+document.body.addEventListener("touchend", function(e) {
+    if (e.target == canvas) {
+        e.preventDefault();
+    }
+}, false);
+document.body.addEventListener("touchmove", function(e) {
+    if (e.target == canvas) {
+        e.preventDefault();
+    }
 }, false);
 
 
