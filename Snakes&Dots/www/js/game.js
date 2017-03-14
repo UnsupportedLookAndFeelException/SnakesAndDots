@@ -19,17 +19,17 @@ canvas.addEventListener("touchstart", function(e) {
     isMousePressed = true;
 }, false);
 canvas.addEventListener("touchend", function(e) {
-    mousePos = getTouchPos(canvas, e);
+    //mousePos = getTouchPos(canvas, e);
     isMousePressed = false;
     isMouseClicked = true;
 }, false);
-  var cRect = canvas.getBoundingClientRect();
+/*  var cRect = canvas.getBoundingClientRect();
 function getTouchPos(canvasDom, touchEvent) {
   return {
     x: touchEvent.touches[0].clientX - cRect.left,
     y: touchEvent.touches[0].clientY - cRect.top
   };
-}
+}*/
 // Prevent scrolling when touching the canvas
 document.body.addEventListener("touchstart", function(e) {
     if (e.target == canvas) {
