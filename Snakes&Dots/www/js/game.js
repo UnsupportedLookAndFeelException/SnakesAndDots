@@ -19,7 +19,8 @@ canvas.addEventListener("touchstart", function(e) {
     isMousePressed = true;
 }, false);
 canvas.addEventListener("touchend", function(e) {
-    //mousePos = getTouchPos(canvas, e);
+    mousePos = getTouchPos(canvas, e);
+    alert(mousePos.x+","+mousePos.y);
     isMousePressed = false;
     isMouseClicked = true;
 }, false);
