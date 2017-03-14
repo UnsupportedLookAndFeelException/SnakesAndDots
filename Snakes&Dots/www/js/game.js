@@ -23,13 +23,13 @@ canvas.addEventListener("touchend", function(e) {
     isMousePressed = false;
     isMouseClicked = true;
 }, false);
-/*  var cRect = canvas.getBoundingClientRect();
+
 function getTouchPos(canvasDom, touchEvent) {
   return {
-    x: touchEvent.touches[0].clientX - cRect.left,
-    y: touchEvent.touches[0].clientY - cRect.top
+    x: touchEvent.touches[0].clientX,
+    y: touchEvent.touches[0].clientY
   };
-}*/
+}
 // Prevent scrolling when touching the canvas
 document.body.addEventListener("touchstart", function(e) {
     if (e.target == canvas) {
