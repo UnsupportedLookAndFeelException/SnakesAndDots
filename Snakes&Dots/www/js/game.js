@@ -1,7 +1,4 @@
 var canvas = document.getElementById("canvas");
-canvas.oncontextmenu = function() {
-    return false;
-}
 // Set up touch events for mobile, etc
 var isMousePressed = false, isMouseClicked = false;
 var mousePos = {
