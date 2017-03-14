@@ -8,13 +8,13 @@ var mousePos = {
     x: 0,
     y: 0
 };
-canvas.addEventListener("mousedown", function(e) {
+/*canvas.addEventListener("mousedown", function(e) {
     isMousePressed = true;
 }, false);
 canvas.addEventListener("mouseup", function(e) {
     isMousePressed = false;
     isMouseClicked = true;
-}, false);
+}, false);*/
 canvas.addEventListener("touchstart", function(e) {
     isMousePressed = true;
 }, false);
@@ -23,11 +23,11 @@ canvas.addEventListener("touchend", function(e) {
     isMousePressed = false;
     isMouseClicked = true;
 }, false);
-var rect = canvasDom.getBoundingClientRect();
+  var cRect = canvas.getBoundingClientRect();
 function getTouchPos(canvasDom, touchEvent) {
   return {
-    x: touchEvent.touches[0].clientX - rect.left,
-    y: touchEvent.touches[0].clientY - rect.top
+    x: touchEvent.touches[0].clientX - cRect.left,
+    y: touchEvent.touches[0].clientY - cRect.top
   };
 }
 // Prevent scrolling when touching the canvas
@@ -1106,6 +1106,3 @@ var processing = new Processing(canvas, function(processing) {
     }
     if (typeof draw !== 'undefined') processing.draw = draw;
 });
-        e.preventDefault();
-    }
-}, false);
