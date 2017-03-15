@@ -144,7 +144,7 @@ var processing = new Processing(canvas, function(processing) {
         var recordTxt = true;
         var gameOver = false;
         var endTimer = 0;
-        var POWERUPS = ["Nothing", "Magnet", "Safety Net", "Invincibility", "Booster", "Shield", "Spike"];
+        var POWERUPS = ["Nothing", "Magnet", "Shield", "Spike"];//["Nothing", "Magnet", "Safety Net", "Invincibility", "Booster", "Shield", "Spike"];
         var poly = function(x, y, sides, radius, rot) {
             beginShape();
             var degreesPerSide = 360 / sides;
