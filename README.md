@@ -1,2 +1,2 @@
 # SnakesAndDots
-An  endless runner hybrid app game built with processing.js and JS.
+An Android wrapper I made for a program made with Khan Academy's programming environment using Processing.js and Phonegap Cordova.
